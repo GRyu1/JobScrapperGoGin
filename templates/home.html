@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang=ko>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>취직정보모음</title>
+</head>
+<body>
+<h1>뭘로 취직할래...</h1>
+<h3>사람인 Live 취직정보</h3>
+<form method="POST" action="/scrape">
+    <input placeholder="기술스택을 입력하세요!" name="term">
+    <button>Search</button>
+</form>
+<script>
+    window.onload = function() {
+        var name = "flash=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        console.log(decodedCookie)
+        var ca = decodedCookie.split(';');
+        console.log(ca)
+        for(var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            console.log(c)
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                alert(c.substring(name.length, c.length));
+                document.cookie = "flash=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            }
+        }
+    }
+</script>
+</body>
+</html>
